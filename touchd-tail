@@ -1,0 +1,3 @@
+device=/dev/$(dmesg|grep TOUCH|egrep -o -m 1 'hidraw([[:digit:]])')
+echo pytouchd.service: touch display is $device
+/usr/bin/python3 $path $1 -d $device -D >> $path.log
