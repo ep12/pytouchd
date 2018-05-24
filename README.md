@@ -46,3 +46,14 @@ ODROID VU7+                | RasPi3                            | beta, dblClick 
 3. Clone this repo
 4. Install start-up script
 TODO
+
+# Options
+
+name                    | type   | default value | comment
+------------------------|--------|---------------|---------------------------------------------------------------------
+live                    | bool   | false         | disable all enhancements and foward the raw input
+dblClickTime            | float  |               | if a click is registered within x seconds after the last click has begun and the new position is within the dragDist radius, the DBL mode is set.
+holdForRightClick       | bool   | true          | perform a right click when pressing the touch screen for longClickTime seconds
+longClickTime           | float  |               | in seconds
+dragDist                | custom |               | defines the distance that must be exceeded to start a drag. In px, in, cm, mm if devW and devH are given, else: pixels
+devW, devH              | custom |               | the phyical measurements of the touch area in cm, mm, in
