@@ -1,0 +1,5 @@
+TODO:
+- inconsistent options (src / example config...)
+- documentation
+- better install.sh / .py?
+- watchdog?
