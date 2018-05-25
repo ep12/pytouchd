@@ -15,16 +15,16 @@ class touchEvt(object):
             - aIDs: a list of bools representing how many touches were registered
             - coordinates: a list of tuples (x, y) of bytes objects.
         '''
-        assert isinstance(absmode, bool)
-        assert isinstance(bpc, int) and bpc > 0
-        assert isinstance(press, bool)
-        assert isinstance(aIDs, list)
-        assert isinstance(coordinates, list)
-        assert len(aIDs) is len(coordinates)
+        assert isinstance(absmode, bool), 'absmode must be a boolean value, not %s' % type(absmode)
+        assert isinstance(bpc, int) and bpc > 0, 'bpc must be a positive, non-zero integer, not %r' % bpc
+        assert isinstance(press, bool), 'press must be a boolean value, not %s' % type(press)
+        assert isinstance(aIDs, list), 'aIDs must be of type list, not %s' % type(aIDs)
+        assert isinstance(coordinates, list), 'coordinates must be a list, not %s' % type(coordinates)
+        assert len(aIDs) is len(coordinates), 'len(aIDs) must be len(coordinates): %d != %d' % (len(aIDs), len(coordinates))
         if len(aIDs) > 0:
-            assert all(isinstance(x, (bool, int)) for x in aIDs)
-            assert all(isinstance(x, tuple) and len(x) is 2 for x in coordinates)
-            assert all(isinstance(y, int) for x in coordinates for y in x)
+            assert all(isinstance(x, (bool, int)) for x in aIDs), 'aIDs elements must be int or bool: %r' % aIDs
+            assert all(isinstance(x, tuple) and len(x) is 2 for x in coordinates), 'coordinates elements must be tuples: %r' % coordinates
+            assert all(isinstance(y, int) for x in coordinates for y in x), 'coordinates elements must be tuples of type int'
         else:
             raise ValueError('empty input arguments!')
         self.time = now()

@@ -93,6 +93,8 @@ def getEvent(buffer):
             print(b''.join(buffer[start:tmp]).hex())
             print(ref)
     else:
+        if len(active[:numPoints]) != len(coords):
+            print('ERROR:\n active=%r\ncoords=%r' % (active[:numPoints], coords))
         event = touchEvt(coordmode, bpc, pressflag, active[:numPoints], coords)
     
     buffer = buffer[tmp:]

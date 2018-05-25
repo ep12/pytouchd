@@ -105,14 +105,18 @@ class Configuration(object):
         # TODO a more forgiving version searching for unique names
         if section is not None:
             return self.getv(value, section=section, vtype=vtype, fallback=fallback)
-        v = None
+        v, count = None, 0
         for s in self.data.keys():
             if value in self.data[s].keys():
-                if v is not None:
-                    raise ValueError('Value exists in multiple sections, use getv instead!')
-                else:
-                    v = self.getv(value, section=s, vtype=vtype, fallback=fallback)
-        return v
+                v = self.getv(value, section=s, vtype=vtype, fallback=fallback)
+                count += 1
+        if count is 1:
+            return v
+        elif count is 0:
+            return fallback
+        else:
+            raise IndexError('%r exists in %d sections!' % (value, count))
+
 
     def getv(self, value, *, section='default', vtype=None, fallback=''):
         if value in self.data[section].keys():

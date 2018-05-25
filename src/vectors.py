@@ -119,8 +119,8 @@ class vec(object):
         return 'vec%d(%s)' % (len(self), ', '.join([str(x) for x in self]))
         
     def __repr__(self):
-        return '<vec%d id="%s" type="%s"\n coordinates="%s">' % \
-          (len(self), hex(id(self)), type(self[0]), ', '.join([str(x) for x in self]))
+        return '<vec%d id="%s" type="%s" length="%s"\n coordinates="%s">' % \
+          (len(self), hex(id(self)), type(self[0]), self.length, ', '.join([str(x) for x in self]))
 
     def __list__(self):
         assert isinstance(self, vec)
@@ -161,4 +161,7 @@ class vec(object):
     
     def area(self, other):
         return self.cross(other).length
-  
+ 
+    @property
+    def isNullVector(self):
+        return self.length == 0.0
